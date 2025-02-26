@@ -18,7 +18,7 @@ export default function PriceChart() {
         };
 
         fetchData();
-    }, []);
+    }, [ selectedPair ]);
 
     return (
         <div>
