@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request) {
+    const { searchParams } = new URL(request.url);
+    const symbol = searchParams.get("symbol");
+    
     try {
         const res = await fetch (
-            "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h"
+            `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h`
         );
 
         if (!res.ok) {
@@ -15,7 +18,7 @@ export async function GET() {
         const formattedData = data.map((candle) => ({
             time: candle[0],
             open: parseFloat(candle[1]),
-            hight: parseFloat(candle[2]),
+            high: parseFloat(candle[2]),
             low: parseFloat(candle[3]),
             close: parseFloat(candle[4]),
             volume: parseFloat(candle[5]),
