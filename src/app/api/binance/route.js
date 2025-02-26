@@ -1,4 +1,4 @@
-import { NextResponce } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
@@ -13,7 +13,7 @@ export async function GET() {
         const data = await res.json();
 
         const formattedData = data.map((candle) => ({
-            time: candle[0] / 1000,
+            time: candle[0],
             open: parseFloat(candle[1]),
             hight: parseFloat(candle[2]),
             low: parseFloat(candle[3]),
@@ -21,9 +21,10 @@ export async function GET() {
             volume: parseFloat(candle[5]),
         }))
 
-        return NextResponce.json(formattedData);
+        return NextResponse.json(formattedData);
+
     } catch (error) {
-        return NextResponce.json(
+        return NextResponse.json(
             { error: "Data fetching failed"},
             { status: 500 }
         );
