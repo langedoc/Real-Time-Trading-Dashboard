@@ -13,8 +13,16 @@ export default function Chart({ ohlcvData }) {
         const chart = createChart(chartContainerRef.current, chartOptions);
         chart.timeScale().fitContent();
 
+        //Validate & sort ohlcvData
+        const validOhlcvData = ohlcvData.sort((a, b) => a.time - b.time) // Sort by time in ascending order
+        .filter((item, index, self) => 
+            index === self.findIndex((t) => (
+                t.time === item.time
+            ))
+        ); // Remove duplicates based on time
+        
         const candleStickSeries = chart.addSeries(CandlestickSeries, { upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'});
-        candleStickSeries.setData(ohlcvData);
+        candleStickSeries.setData(validOhlcvData);
         
         window.addEventListener('resize', handleResize);
 

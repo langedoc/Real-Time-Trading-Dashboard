@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useCrypto } from "@/app/context/CryptoContext";
+import useWebSocket from "@/app/context/useWebSocket";
 import Chart from "@/app/components/dashboard/PriceChart/Chart";
 
 export default function PriceChart() {
     const { selectedPair } = useCrypto();
     const [ ohlcvData, setOhlcvData ] = useState([]);
+    const { ohlcvData: wsOhlcvData } = useWebSocket(selectedPair); 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +22,12 @@ export default function PriceChart() {
 
         fetchData();
     }, [ selectedPair ]);
+
+    useEffect(() => {
+        if(wsOhlcvData) {
+            setOhlcvData(prevData => [...prevData, wsOhlcvData]);
+        }
+    }, [selectedPair]);
 
     return (
         <div>
