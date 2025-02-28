@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 const useWebSocketOB = (symbol) => {
     const [ orderBook, setOrderBook ] = useState(null);
     const wsRef = useRef(null);
-    const reconnectDelay = 1000; // Delay in 1 second before attempting to reconnect
+    const reconnectDelay = 5000; // Delay in 1 second before attempting to reconnect
 
     useEffect(() => {
         if(!symbol) return;

@@ -3,12 +3,12 @@ import { useEffect, useState, useRef } from "react";
 const useWebSocketPC = (symbol) => {
     const [ ohlcvData, setOhlcvData ] = useState(null);
     const wsRef = useRef(null);
+    const reconnectDelay = 5000;
 
     useEffect(() => {
         if(!symbol) return;
 
         const connectWebSocket = () => {
-
             const ws = new WebSocket(`wss://fstream.binance.com/ws/${symbol.toLowerCase()}@kline_1h`);
             wsRef.current = ws;
 
