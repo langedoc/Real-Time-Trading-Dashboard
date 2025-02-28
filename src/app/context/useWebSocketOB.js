@@ -7,7 +7,7 @@ const useWebSocketOB = (symbol) => {
     useEffect(() => {
         if(!symbol) return;
 
-        const ws = new WebSocket(`wss://fstream.binance.com/ws/${symbol.toLowerCase()}@depth`);
+        const ws = new WebSocket(`wss://fstream.binance.com/ws/${symbol.toLowerCase()}@depth@500ms`); // Can be adjusted to 250 milliseconds, 500 milliseconds, 100 milliseconds (if existing)
         wsRef.current = ws;
 
         ws.onmessage = (event) => {
@@ -23,7 +23,7 @@ const useWebSocketOB = (symbol) => {
         return () => ws.close();
     }, [symbol]);
 
-    return orderBook;
+    return { orderBook };
 };
 
 export default useWebSocketOB;
