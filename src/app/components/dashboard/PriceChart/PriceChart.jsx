@@ -13,10 +13,14 @@ export default function PriceChart() {
         const fetchData = async () => {
             try {
                 const res = await fetch(`/api/binance?symbol=${selectedPair}`);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
                 const data = await res.json();
                 setOhlcvData(data); 
             } catch(error) {
                 console.error("Data fetching error:", error);
+                setOhlcvData([]);
             }
         };
 

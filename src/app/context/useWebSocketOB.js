@@ -13,16 +13,25 @@ const useWebSocketOB = (symbol) => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             setOrderBook({
-                bids: data.b.slice(0, 10), // Showing only first 10 for best readability and performance
-                asks: data.a.slice(0, 10),
+                // Showing only first 10 for best readability and performance
+                bids: data.b.slice(0, 10).map(([price, quantity]) => ({price: parseFloat(price), quantity: parseFloat(quantity) })),
+                asks: data.a.slice(0, 10).map(([price, quantity]) => ({price: parseFloat(price), quantity: parseFloat(quantity) })),
             });
         };
 
-        ws.onerror = (error) => console.error("WebSocket error:", error);
+        ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            setOrderBook(null);
+        };
+
+        ws.onclose = () => {
+            console.warn("WebSocket connection closed. Attempting to reconnect...");
+            setOrderBook(null);
+        };
 
         return () => ws.close();
     }, [symbol]);
-
+    
     return { orderBook };
 };
 

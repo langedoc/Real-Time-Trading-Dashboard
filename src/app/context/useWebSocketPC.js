@@ -25,7 +25,10 @@ const useWebSocketPC = (symbol) => {
             }
         };
 
-        ws.onerror = (error) => console.error("WebSocket error:", error);
+        ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            setOhlcvData(null);
+        };
 
         return () => ws.close();
     }, [ symbol ]);

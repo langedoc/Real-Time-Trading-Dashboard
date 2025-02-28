@@ -28,7 +28,6 @@ export default function Chart({ ohlcvData }) {
 
         return () => {
             window.removeEventListener('resize', handleResize);
-
             chart.remove();
         };
 
