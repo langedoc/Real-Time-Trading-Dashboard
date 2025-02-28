@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-const useWebSocket = (symbol) => {
+const useWebSocketPC = (symbol) => {
     const [ ohlcvData, setOhlcvData ] = useState(null);
     const wsRef = useRef(null);
 
@@ -33,4 +33,4 @@ const useWebSocket = (symbol) => {
     return { ohlcvData };
 };
 
-export default useWebSocket;
+export default useWebSocketPC;
