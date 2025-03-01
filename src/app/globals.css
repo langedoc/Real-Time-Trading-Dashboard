@@ -1,21 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-green-400: oklch(0.792 0.209 151.711);
+  --color-rose-500: oklch(0.645 0.246 16.439);
+  --color-slate-950: oklch(0.129 0.042 264.695);
+  --color-slate-50: oklch(0.984 0.003 247.858);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}

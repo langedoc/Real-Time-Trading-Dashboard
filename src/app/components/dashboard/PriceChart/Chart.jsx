@@ -9,7 +9,12 @@ export default function Chart({ ohlcvData }) {
         const handleResize = () => {
             chart.applyOptions({ width: chartContainerRef.current.clientWidth });
         };
-        const chartOptions = {layout: {textColor: 'black', background: {type: 'solid', color: 'white'}}, width: chartContainerRef.current.clientWidth, height: 300};
+        const chartOptions = {
+            layout: {textColor: 'white',
+            background: {type: 'solid', color: 'var(--background)'}},
+            width: chartContainerRef.current.clientWidth,
+            height: 300
+        };
         const chart = createChart(chartContainerRef.current, chartOptions);
         chart.timeScale().fitContent();
 
