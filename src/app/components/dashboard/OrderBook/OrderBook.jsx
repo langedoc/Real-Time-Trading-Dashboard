@@ -11,14 +11,14 @@ export default function OrderBook() {
         <div className="w-full">
             <h2>Order Book</h2>
             {orderBook ? (
-                <div className="flex flex-row">
+                <div className="flex flex-row gap-[10px]">
                     <Table 
                         data={orderBook.bids} 
-                        headers={['Price', 'Quantity', 'Total']} 
-                    />
+                        name={"Buy Orders"}
+                        />
                     <Table 
                         data={orderBook.asks} 
-                        headers={['Price', 'Quantity', 'Total']} 
+                        name={"Sell Orders"}
                     />
                 </div>
             ) : (
