@@ -34,8 +34,12 @@ export default function PriceChart() {
     }, [selectedPair]);
 
     return (
-        <div>
-            {ohlcvData.length > 0 && <Chart key={selectedPair} ohlcvData={ohlcvData} />}
+        <div className="">
+            <h2>Price Chart</h2>
+            <div>
+                {ohlcvData.length > 0 && <Chart key={selectedPair} ohlcvData={ohlcvData} />}
+            </div>
+
         </div>
     );
 };
