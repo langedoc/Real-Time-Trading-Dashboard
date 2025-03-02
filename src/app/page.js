@@ -4,15 +4,13 @@ import OrderBook from "./components/dashboard/OrderBook/OrderBook";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <main>
-        <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold"> Trading Dashboard</h1>
-            <TraidingPairsMenu className="mb-4"/>
-        </div>
-        <PriceChart className="mb-4" />
-        <OrderBook className="mb-4" />
-      </main> 
-    </div>
+    <main className="flex flex-col m-[20px] gap-[20px]">
+      <div className="flex justify-between items-center ">
+          <h1 className="text-2xl font-bold"> Trading Dashboard</h1>
+          <TraidingPairsMenu/>
+      </div>
+      <PriceChart />
+      <OrderBook />
+    </main>
   );
 }
