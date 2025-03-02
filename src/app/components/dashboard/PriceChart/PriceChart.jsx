@@ -37,7 +37,9 @@ export default function PriceChart() {
         <div className="">
             <h2>Price Chart - {currency}/USDT</h2>
             <div>
-                {ohlcvData.length > 0 && <Chart key={selectedPair} ohlcvData={ohlcvData} />}
+                {ohlcvData.length > 0 ? <Chart key={selectedPair} ohlcvData={ohlcvData} /> : (
+                <p>Getting data...</p>
+            )}
             </div>
 
         </div>
