@@ -9,9 +9,10 @@ export const useCrypto = () => {
 
 export const CryptoProvider = (({ children }) => {
     const [ selectedPair, setSelectedPair ] = useState("BTCUSDT");
+    const currency = selectedPair.slice(0,3);
 
     return (
-        <CryptoContext.Provider value={{ selectedPair, setSelectedPair }}>
+        <CryptoContext.Provider value={{ selectedPair, currency, setSelectedPair }}>
             { children }
         </CryptoContext.Provider>
     );

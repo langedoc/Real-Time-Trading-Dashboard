@@ -9,7 +9,12 @@ export default function Chart({ ohlcvData }) {
         const handleResize = () => {
             chart.applyOptions({ width: chartContainerRef.current.clientWidth });
         };
-        const chartOptions = {layout: {textColor: 'black', background: {type: 'solid', color: 'white'}}, width: chartContainerRef.current.clientWidth, height: 300};
+        const chartOptions = {
+            layout: {textColor: 'white',
+            background: {type: 'solid', color: 'oklch(0.129 0.042 264.695)'}},
+            width: chartContainerRef.current.clientWidth,
+            height: 300
+        };
         const chart = createChart(chartContainerRef.current, chartOptions);
         chart.timeScale().fitContent();
 
@@ -21,7 +26,7 @@ export default function Chart({ ohlcvData }) {
             ))
         ); // Remove duplicates based on time
         
-        const candleStickSeries = chart.addSeries(CandlestickSeries, { upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'});
+        const candleStickSeries = chart.addSeries(CandlestickSeries, { upColor: '#05df72', downColor: '#ff2056', borderVisible: false, wickUpColor: '#05df72', wickDownColor: '#ff2056'});
         candleStickSeries.setData(validOhlcvData);
         
         window.addEventListener('resize', handleResize);
