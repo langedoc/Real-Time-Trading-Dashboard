@@ -4,12 +4,12 @@ import useWebSocketOB from '../../../context/useWebSocketOB';
 import Table from './Table';
 
 export default function OrderBook() {
-    const { selectedPair } = useCrypto();
+    const { selectedPair, currency } = useCrypto();
     const { orderBook } = useWebSocketOB(selectedPair);
 
     return (
         <div className="w-full">
-            <h2>Order Book</h2>
+            <h2>Order Book - {currency}/USDT</h2>
             {orderBook ? (
                 <div className="flex flex-row gap-[10px]">
                     <Table 

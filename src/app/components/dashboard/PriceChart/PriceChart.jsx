@@ -5,7 +5,7 @@ import useWebSocketPC from "@/app/context/useWebSocketPC";
 import Chart from "@/app/components/dashboard/PriceChart/Chart";
 
 export default function PriceChart() {
-    const { selectedPair } = useCrypto();
+    const { selectedPair, currency } = useCrypto();
     const [ ohlcvData, setOhlcvData ] = useState([]);
     const { ohlcvData: wsOhlcvData } = useWebSocketPC(selectedPair); 
 
@@ -35,7 +35,7 @@ export default function PriceChart() {
 
     return (
         <div className="">
-            <h2>Price Chart</h2>
+            <h2>Price Chart - {currency}/USDT</h2>
             <div>
                 {ohlcvData.length > 0 && <Chart key={selectedPair} ohlcvData={ohlcvData} />}
             </div>

@@ -2,8 +2,7 @@
 import { useCrypto } from "@/app/context/CryptoContext";
 
 export default function Table({ data, name }) {
-    const { selectedPair } = useCrypto();
-    const currency = selectedPair.slice(0,4);
+    const { selectedPair, currency } = useCrypto();
     const borderColor = name === "Buy Orders" ? "border-green-400" : name === "Sell Orders" ? "border-rose-500" : "border-slate-50";
 
     return (
